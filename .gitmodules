@@ -1,0 +1,4 @@
+[submodule "plugin"]
+	path = plugin
+	url = git@github.com:UstymUkhman/vite-plugin-glsl.git
+	branch = main

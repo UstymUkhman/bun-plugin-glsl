@@ -1,0 +1,12 @@
+{
+	"settings": {
+    "editor.bracketPairColorization.enabled": false,
+		"typescript.format.semicolons": "insert",
+		"git.ignoreLimitWarning": true
+  },
+
+  "folders": [{
+		"name": "Bun Plugin GLSL",
+    "path": "."
+	}]
+}
