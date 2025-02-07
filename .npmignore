@@ -1,0 +1,10 @@
+# Folders:
+test
+plugin
+node_modules
+
+# Files:
+.gitignore
+.gitmodules
+tsconfig.json
+*.code-workspace

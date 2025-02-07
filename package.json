@@ -1,11 +1,41 @@
 {
   "name": "bun-plugin-glsl",
-  "module": "index.ts",
+  "description": "Import, inline (and compress) GLSL shader files",
+  "homepage": "https://github.com/UstymUkhman/bun-plugin-glsl#readme",
+  "packageManager": "^npm@10.8.3",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
   "type": "module",
+  "author": {
+    "name": "Ustym Ukhman",
+    "email": "ustym.ukhman@gmail.com",
+    "url": "https://github.com/UstymUkhman/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UstymUkhman/bun-plugin-glsl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UstymUkhman/bun-plugin-glsl/issues",
+    "email": "ustym.ukhman@gmail.com"
+  },
+  "publishConfig": {
+    "save-dev": true,
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "test": "bun --watch ./test"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">= 20.17.0",
+    "npm": ">= 10.8.3"
   }
 }
