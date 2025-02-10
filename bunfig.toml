@@ -1,1 +1,1 @@
-preload = ["./src/plugin.ts"]
+preload = ["./src/index.ts", "./src/import.ts"]
