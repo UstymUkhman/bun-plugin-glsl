@@ -3,6 +3,9 @@
   "description": "Import, inline (and compress) GLSL shader files",
   "homepage": "https://github.com/UstymUkhman/bun-plugin-glsl#readme",
   "packageManager": "^npm@10.8.3",
+  "types": "./build/index.d.ts",
+  "module": "./build/index.js",
+  "main": "./build/index.js",
   "version": "0.1.0",
   "private": false,
   "license": "MIT",
@@ -25,14 +28,44 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "scripts": {
-    "test": "bun --watch ./test"
+  "exports": {
+    ".": "./build/index.js",
+    "./ext": {
+      "types": "./ext.d.ts"
+    }
   },
-  "devDependencies": {
-    "@types/bun": "latest"
+  "files": [
+    "package.json",
+    "bunfig.toml",
+    "README.md",
+    "bun.lock",
+    "ext.d.ts",
+    "LICENSE",
+    "build"
+  ],
+  "keywords": [
+    "bun",
+    "glsl",
+    "webgl",
+    "bunjs",
+    "webgpu",
+    "plugin",
+    "threejs",
+    "shaders",
+    "bun-plugin",
+    "glsl-shaders",
+    "webgl-shaders",
+    "webgpu-shaders"
+  ],
+  "scripts": {
+    "test": "bun --watch ./test",
+    "build": "bun build ./src/index.ts --target bun --outdir build"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
   },
   "engines": {
     "node": ">= 20.17.0",
