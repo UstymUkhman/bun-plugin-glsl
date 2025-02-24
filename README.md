@@ -47,6 +47,7 @@ or as a [package dependency directive](https://www.typescriptlang.org/docs/handb
 ```js
 glsl({
   include: /\.(glsl|wgsl|vert|frag|vs|fs)$/, // RegExp of file extensions to import
+  removeDuplicatedImports: false,            // Automatically remove an already imported chunk
   warnDuplicatedImports: true,               // Warn if the same chunk was imported multiple times
   defaultExtension: 'glsl',                  // Shader suffix when no extension is specified
   compress: false,                           // Compress output shader code

@@ -41,6 +41,7 @@ const DEFAULT_SHADERS = /\.(glsl|wgsl|vert|frag|vs|fs)$/;
  */
 export default function ({
     defaultExtension = DEFAULT_EXTENSION,
+    removeDuplicatedImports = false,
     warnDuplicatedImports = true,
     include = DEFAULT_SHADERS,
     compress = false,
@@ -57,6 +58,7 @@ export default function ({
 
         const { /* dependentChunks, */ outputShader } = loadShader(
           source, args.path, {
+            removeDuplicatedImports,
             warnDuplicatedImports,
             defaultExtension,
             compress,
