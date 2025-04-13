@@ -1,6 +1,6 @@
 # Bun Plugin GLSL
 
-> Import, inline (and compress) GLSL shader files
+> Import, inline (and minify) GLSL/WGSL shader files
 
 <!-- ![npm](https://img.shields.io/npm/dt/bun-plugin-glsl?style=flat-square) -->
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/UstymUkhman/bun-plugin-glsl?color=brightgreen&style=flat-square)
@@ -50,7 +50,7 @@ glsl({
   removeDuplicatedImports: false,            // Automatically remove an already imported chunk
   warnDuplicatedImports: true,               // Warn if the same chunk was imported multiple times
   defaultExtension: 'glsl',                  // Shader suffix when no extension is specified
-  compress: false,                           // Compress output shader code
+  minify: false,                             // Minify/optimize output shader code
   watch: true,                               // Recompile shader on change
   root: '/'                                  // Directory for root imports
 })

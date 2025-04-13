@@ -1,15 +1,15 @@
 {
   "name": "bun-plugin-glsl",
-  "description": "Import, inline (and compress) GLSL shader files",
+  "description": "Import, inline (and minify) GLSL/WGSL shader files",
   "homepage": "https://github.com/UstymUkhman/bun-plugin-glsl#readme",
   "packageManager": "^npm@10.8.3",
   "types": "./build/index.d.ts",
   "module": "./build/index.js",
   "main": "./build/index.js",
   "version": "0.1.0",
-  "private": false,
   "license": "MIT",
   "type": "module",
+  "private": true,
   "author": {
     "name": "Ustym Ukhman",
     "email": "ustym.ukhman@gmail.com",

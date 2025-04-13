@@ -1,7 +1,7 @@
 /**
  * @module bun-plugin-glsl
  * @author Ustym Ukhman <ustym.ukhman@gmail.com>
- * @description Import, inline (and compress) GLSL shader files
+ * @description Import, inline (and minify) GLSL/WGSL shader files
  * @version 0.1.0
  * @license MIT
  */
@@ -30,7 +30,7 @@ const DEFAULT_SHADERS = /\.(glsl|wgsl|vert|frag|vs|fs)$/;
  * @function
  * @name glsl
  * @description Plugin entry point to import,
- * inline, (and compress) GLSL shader files
+ * inline, (and minify) GLSL/WGSL shader files
  * 
  * @see {@link https://bun.sh/docs/bundler/plugins}
  * @link https://github.com/UstymUkhman/bun-plugin-glsl
@@ -44,7 +44,7 @@ export default function ({
     removeDuplicatedImports = false,
     warnDuplicatedImports = true,
     include = DEFAULT_SHADERS,
-    compress = false,
+    minify = false,
     // watch = true,
     root = '/'
   } = {}
@@ -56,12 +56,12 @@ export default function ({
       build.onLoad({ filter: include }, async (args) => {
         const source = await Bun.file(args.path).text();
 
-        const { /* dependentChunks, */ outputShader } = loadShader(
+        const { /* dependentChunks, */ outputShader } = await loadShader(
           source, args.path, {
             removeDuplicatedImports,
             warnDuplicatedImports,
             defaultExtension,
-            compress,
+            minify,
             root
           });
 

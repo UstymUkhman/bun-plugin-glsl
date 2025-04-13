@@ -1,5 +1,5 @@
 import type { BunPlugin } from 'bun';
-import type { Compress } from '../plugin/src/types';
+import type { Minify } from '../plugin/src/types';
 
 /**
  * @typedef {Object} PluginOptions
@@ -9,7 +9,7 @@ import type { Compress } from '../plugin/src/types';
  * @property {boolean}     removeDuplicatedImports Automatically remove an already imported chunk
  * @property {boolean}     warnDuplicatedImports   Warn if the same chunk was imported multiple times
  * @property {string}      defaultExtension        Shader suffix when no extension is specified
- * @property {Compress}    compress                Compress output shader code
+ * @property {Minify}      minify                  Minify output shader code
  * @property {boolean}     watch                   Recompile shader on change
  * @property {string}      root                    Directory for root imports
  * 
@@ -18,7 +18,7 @@ import type { Compress } from '../plugin/src/types';
  *   removeDuplicatedImports: false,
  *   warnDuplicatedImports: true,
  *   include: DEFAULT_SHADERS,
- *   compress: false,
+ *   minify: false,
  *   watch: true,
  *   root: '/'
  * }
@@ -27,8 +27,8 @@ export type PluginOptions = Partial<{
   removeDuplicatedImports: boolean;
   warnDuplicatedImports: boolean;
   defaultExtension: string;
-  compress: Compress;
   include: RegExp;
+  minify: Minify;
   watch: boolean;
   root: string;
 }>;
@@ -37,7 +37,7 @@ export type PluginOptions = Partial<{
  * @function
  * @name glsl
  * @description Plugin entry point to import,
- * inline, (and compress) GLSL shader files
+ * inline, (and minify) GLSL/WGSL shader files
  * 
  * @see {@link https://bun.sh/docs/runtime/plugins}
  * @link https://github.com/UstymUkhman/bun-plugin-glsl
@@ -50,8 +50,8 @@ export default function ({
   removeDuplicatedImports,
   warnDuplicatedImports,
   defaultExtension,
-  compress,
   include,
+  minify,
   watch,
   root
 }?: PluginOptions): BunPlugin;
