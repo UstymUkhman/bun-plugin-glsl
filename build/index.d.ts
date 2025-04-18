@@ -1,5 +1,5 @@
+import type { LoadingOptions } from '../plugin/src/types';
 import type { BunPlugin } from 'bun';
-import type { Minify } from '../plugin/src/types';
 
 /**
  * @typedef {Object} PluginOptions
@@ -23,15 +23,10 @@ import type { Minify } from '../plugin/src/types';
  *   root: '/'
  * }
  */
-export type PluginOptions = Partial<{
-  removeDuplicatedImports: boolean;
-  warnDuplicatedImports: boolean;
-  defaultExtension: string;
-  include: RegExp;
-  minify: Minify;
-  watch: boolean;
-  root: string;
-}>;
+export type PluginOptions = Partial<LoadingOptions> & {
+  include?: RegExp;
+  watch?: boolean;
+};
 
 /**
  * @function
