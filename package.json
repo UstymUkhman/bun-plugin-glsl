@@ -9,7 +9,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",
-  "private": true,
+  "private": false,
   "author": {
     "name": "Ustym Ukhman",
     "email": "ustym.ukhman@gmail.com",
