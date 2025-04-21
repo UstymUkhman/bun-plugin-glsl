@@ -1,6 +1,7 @@
 # Folders:
 test
 plugin
+plugin/**/*
 node_modules
 
 # Files:
@@ -8,3 +9,7 @@ node_modules
 .gitmodules
 tsconfig.json
 *.code-workspace
+
+# Exceptions:
+!plugin/ext.d.ts
+!plugin/src/types.d.ts
