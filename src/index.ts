@@ -2,29 +2,13 @@
  * @module bun-plugin-glsl
  * @author Ustym Ukhman <ustym.ukhman@gmail.com>
  * @description Import, inline (and minify) GLSL/WGSL shader files
- * @version 0.1.0
+ * @version 0.2.0
  * @license MIT
  */
 
 import loadShader from '../plugin/src/loadShader';
 import type { PluginOptions } from '../build';
 import type { BunPlugin } from 'bun';
-
-/**
- * @const
- * @default
- * @readonly
- * @type {string}
- */
-const DEFAULT_EXTENSION = 'glsl';
-
-/**
- * @const
- * @default
- * @readonly
- * @type {RegExp}
- */
-const DEFAULT_SHADERS = /\.(glsl|wgsl|vert|frag|vs|fs)$/;
 
 /**
  * @function
@@ -40,10 +24,11 @@ const DEFAULT_SHADERS = /\.(glsl|wgsl|vert|frag|vs|fs)$/;
  * @returns {BunPlugin} Bun plugin that converts shader code
  */
 export default function ({
-    defaultExtension = DEFAULT_EXTENSION,
+    include = /\.(glsl|wgsl|vert|frag|vs|fs)$/,
     removeDuplicatedImports = false,
     warnDuplicatedImports = true,
-    include = DEFAULT_SHADERS,
+    defaultExtension = 'glsl',
+    importKeyword = '#include',
     minify = false,
     // watch = true,
     root = '/'
@@ -61,6 +46,7 @@ export default function ({
             removeDuplicatedImports,
             warnDuplicatedImports,
             defaultExtension,
+            importKeyword,
             minify,
             root
           });

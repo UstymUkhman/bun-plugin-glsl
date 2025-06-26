@@ -2,7 +2,7 @@
 
 > Import, inline (and minify) GLSL/WGSL shader files
 
-<!-- ![npm](https://img.shields.io/npm/dt/bun-plugin-glsl?style=flat-square) -->
+![npm](https://img.shields.io/npm/dt/bun-plugin-glsl?style=flat-square)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/UstymUkhman/bun-plugin-glsl?color=brightgreen&style=flat-square)
 ![GitHub](https://img.shields.io/github/license/UstymUkhman/bun-plugin-glsl?color=brightgreen&style=flat-square)
 
@@ -49,7 +49,8 @@ glsl({
   include: /\.(glsl|wgsl|vert|frag|vs|fs)$/, // RegExp of file extensions to import
   removeDuplicatedImports: false,            // Automatically remove an already imported chunk
   warnDuplicatedImports: true,               // Warn if the same chunk was imported multiple times
-  defaultExtension: 'glsl',                  // Shader suffix when no extension is specified
+  defaultExtension: 'glsl',                  // Shader suffix to use when no extension is specified
+  importKeyword: '#include',                 // Keyword used to import shader chunks
   minify: false,                             // Minify/optimize output shader code
   watch: true,                               // Recompile shader on change
   root: '/'                                  // Directory for root imports

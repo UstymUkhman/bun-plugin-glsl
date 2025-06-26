@@ -8,16 +8,18 @@ import type { BunPlugin } from 'bun';
  * @property {RegExp}      include                 RegExp of file extensions to import
  * @property {boolean}     removeDuplicatedImports Automatically remove an already imported chunk
  * @property {boolean}     warnDuplicatedImports   Warn if the same chunk was imported multiple times
- * @property {string}      defaultExtension        Shader suffix when no extension is specified
+ * @property {string}      defaultExtension        Shader suffix to use when no extension is specified
+ * @property {string}      importKeyword           Keyword used to import shader chunks
  * @property {Minify}      minify                  Minify output shader code
  * @property {boolean}     watch                   Recompile shader on change
  * @property {string}      root                    Directory for root imports
  * 
  * @default {
- *   defaultExtension: DEFAULT_EXTENSION,
+ *   include: /\.(glsl|wgsl|vert|frag|vs|fs)$/,
  *   removeDuplicatedImports: false,
  *   warnDuplicatedImports: true,
- *   include: DEFAULT_SHADERS,
+ *   defaultExtension: 'glsl',
+ *   importKeyword: '#include',
  *   minify: false,
  *   watch: true,
  *   root: '/'
@@ -45,6 +47,7 @@ export default function ({
   removeDuplicatedImports,
   warnDuplicatedImports,
   defaultExtension,
+  importKeyword,
   include,
   minify,
   watch,
