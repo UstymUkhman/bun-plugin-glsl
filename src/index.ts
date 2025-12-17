@@ -2,7 +2,7 @@
  * @module bun-plugin-glsl
  * @author Ustym Ukhman <ustym.ukhman@gmail.com>
  * @description Import, inline (and minify) GLSL/WGSL shader files
- * @version 0.2.0
+ * @version 0.2.1
  * @license MIT
  */
 
