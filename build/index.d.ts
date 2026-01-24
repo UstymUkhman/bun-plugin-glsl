@@ -10,7 +10,7 @@ import type { BunPlugin } from 'bun';
  * @property {boolean}     warnDuplicatedImports   Warn if the same chunk was imported multiple times
  * @property {string}      defaultExtension        Shader suffix to use when no extension is specified
  * @property {string}      importKeyword           Keyword used to import shader chunks
- * @property {Minify}      minify                  Minify output shader code
+ * @property {Minify}      minify                  Minify/optimize output shader code
  * @property {boolean}     watch                   Recompile shader on change
  * @property {string}      root                    Directory for root imports
  * 

@@ -1,4 +1,4 @@
-# Bun Plugin GLSL
+# Bun Plugin GLSL #
 
 > Import, inline (and minify) GLSL/WGSL shader files
 
@@ -10,7 +10,7 @@ _Inspired by [vite-plugin-glsl](https://github.com/UstymUkhman/vite-plugin-glsl)
 
 ## Installation ##
 
-```bash
+```sh
 bun add bun-plugin-glsl --dev
 ```
 
@@ -56,3 +56,7 @@ glsl({
   root: '/'                                  // Directory for root imports
 })
 ```
+
+### Note: ###
+
+For a practical usage example, changelog and know issues, please consult [Vite plugin](https://github.com/UstymUkhman/vite-plugin-glsl) on which this one is based.

@@ -58,7 +58,7 @@
     "webgpu-shaders"
   ],
   "scripts": {
-    "test": "bun --watch ./test",
+    "test": "bun --watch",
     "build": "bun build ./src/index.ts --target bun --outdir build"
   },
   "peerDependencies": {
