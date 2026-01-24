@@ -2,7 +2,7 @@
  * @module bun-plugin-glsl
  * @author Ustym Ukhman <ustym.ukhman@gmail.com>
  * @description Import, inline (and minify) GLSL/WGSL shader files
- * @version 0.2.1
+ * @version 0.2.2
  * @license MIT
  */
 
@@ -30,7 +30,7 @@ export default function ({
     defaultExtension = 'glsl',
     importKeyword = '#include',
     minify = false,
-    // watch = true,
+    watch = true,
     root = '/'
   } = {}
 ) {
@@ -38,10 +38,12 @@ export default function ({
     name: 'bun-plugin-glsl',
 
     setup (build) {
+      const prod = Bun.env.NODE_ENV === 'production';
+
       build.onLoad({ filter: include }, async (args) => {
         const source = await Bun.file(args.path).text();
 
-        const { /* dependentChunks, */ outputShader } = await loadShader(
+        const { dependentChunks, outputShader } = await loadShader(
           source, args.path, {
             removeDuplicatedImports,
             warnDuplicatedImports,
@@ -52,14 +54,23 @@ export default function ({
           });
 
         /**
-         * TODO: `addWatchFile` is not yet supported in bun,
-         * needs to be added once it is. From `vite-plugin-glsl`:
-         *
-        if (watch && !prod) {
-          const chunks = Array.from(dependentChunks.values()).flat();
-          chunks.forEach(chunk => this.addWatchFile(chunk));
-        }
+         * Adding a file to the watch list is not yet supported in bun.
+         * Implemented a workaround described in the following issue:
+         * https://github.com/UstymUkhman/bun-plugin-glsl/issues/1
          */
+        if (watch && !prod) {
+          const files = new Set();
+
+          dependentChunks.forEach((chunks, file) => {
+            chunks.forEach(files.add, files);
+            files.add(file);
+          });
+
+          await Promise.all(Array.from(files).map(
+            file => import(`${file}?`),
+            { with: { type: "text" } }
+          ));
+        }
 
         return {
           exports: { default: outputShader },

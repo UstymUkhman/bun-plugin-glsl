@@ -6,7 +6,7 @@
   "types": "./build/index.d.ts",
   "module": "./build/index.js",
   "main": "./build/index.js",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "MIT",
   "type": "module",
   "private": false,
@@ -58,14 +58,14 @@
     "webgpu-shaders"
   ],
   "scripts": {
-    "test": "bun --watch",
+    "test": "bun --watch ./test",
     "build": "bun build ./src/index.ts --target bun --outdir build"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "^1.3.6"
   },
   "engines": {
     "node": ">= 20.17.0",
