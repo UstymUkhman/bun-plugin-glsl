@@ -1,1 +1,5 @@
 preload = ["./src/index.ts", "./src/import.ts"]
+
+# Live Server:
+# [serve.static]
+# plugins=["./src/index.ts"]
