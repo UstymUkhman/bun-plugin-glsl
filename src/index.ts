@@ -1,11 +1,13 @@
 /**
  * @module bun-plugin-glsl
  * @author Ustym Ukhman <ustym.ukhman@gmail.com>
- * @description Import, inline (and minify) GLSL/WGSL shader files
+ * @description Import, inline (and minify) GLSL/WGSL/Slang shader files
  * @version 0.2.2
  * @license MIT
  */
 
+// @ts-expect-error
+export { minifyShader as minify } from '../plugin/src/loadShader.js';
 import loadShader from '../plugin/src/loadShader';
 import type { PluginOptions } from '../build';
 import type { BunPlugin } from 'bun';
@@ -14,7 +16,7 @@ import type { BunPlugin } from 'bun';
  * @function
  * @name glsl
  * @description Plugin entry point to import,
- * inline, (and minify) GLSL/WGSL shader files
+ * inline, (and minify) GLSL/WGSL/Slang shader files
  * 
  * @see {@link https://bun.sh/docs/bundler/plugins}
  * @link https://github.com/UstymUkhman/bun-plugin-glsl
@@ -26,9 +28,10 @@ import type { BunPlugin } from 'bun';
 export default function ({
     include = /\.(glsl|wgsl|vert|frag|vs|fs)$/,
     removeDuplicatedImports = false,
+    importKeywords = ['#include'],
     warnDuplicatedImports = true,
     defaultExtension = 'glsl',
-    importKeyword = '#include',
+    onComplete = undefined,
     minify = false,
     watch = true,
     root = '/'
@@ -48,7 +51,8 @@ export default function ({
             removeDuplicatedImports,
             warnDuplicatedImports,
             defaultExtension,
-            importKeyword,
+            importKeywords,
+            onComplete,
             minify,
             root
           });

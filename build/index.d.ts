@@ -1,5 +1,6 @@
-import type { LoadingOptions } from '../plugin/src/types';
 import type { BunPlugin } from 'bun';
+import type { LoadingOptions } from '../plugin/src/types';
+type OnComplete = ((shader: string, path: string) => Promise<string> | string) | undefined;
 
 /**
  * @typedef {Object} PluginOptions
@@ -9,7 +10,8 @@ import type { BunPlugin } from 'bun';
  * @property {boolean}     removeDuplicatedImports Automatically remove an already imported chunk
  * @property {boolean}     warnDuplicatedImports   Warn if the same chunk was imported multiple times
  * @property {string}      defaultExtension        Shader suffix to use when no extension is specified
- * @property {string}      importKeyword           Keyword used to import shader chunks
+ * @property {string[]}    importKeywords          Keywords used to import shader chunk files
+ * @property {OnComplete}  onComplete              Function to call with output shader
  * @property {Minify}      minify                  Minify/optimize output shader code
  * @property {boolean}     watch                   Recompile shader on change
  * @property {string}      root                    Directory for root imports
@@ -17,9 +19,10 @@ import type { BunPlugin } from 'bun';
  * @default {
  *   include: /\.(glsl|wgsl|vert|frag|vs|fs)$/,
  *   removeDuplicatedImports: false,
+ *   importKeywords: ['#include'],
  *   warnDuplicatedImports: true,
  *   defaultExtension: 'glsl',
- *   importKeyword: '#include',
+ *   onComplete: undefined,
  *   minify: false,
  *   watch: true,
  *   root: '/'
@@ -34,7 +37,7 @@ export type PluginOptions = Partial<LoadingOptions> & {
  * @function
  * @name glsl
  * @description Plugin entry point to import,
- * inline, (and minify) GLSL/WGSL shader files
+ * inline, (and minify) GLSL/WGSL/Slang shader files
  * 
  * @see {@link https://bun.sh/docs/runtime/plugins}
  * @link https://github.com/UstymUkhman/bun-plugin-glsl
@@ -47,7 +50,8 @@ export default function ({
   removeDuplicatedImports,
   warnDuplicatedImports,
   defaultExtension,
-  importKeyword,
+  importKeywords,
+  onComplete,
   include,
   minify,
   watch,

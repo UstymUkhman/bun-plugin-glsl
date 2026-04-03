@@ -1,6 +1,6 @@
 # Bun Plugin GLSL #
 
-> Import, inline (and minify) GLSL/WGSL shader files
+> Import, inline (and minify) GLSL/WGSL/Slang shader files
 
 ![npm](https://img.shields.io/npm/dt/bun-plugin-glsl?style=flat-square)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/UstymUkhman/bun-plugin-glsl?color=brightgreen&style=flat-square)
@@ -47,10 +47,11 @@ or as a [package dependency directive](https://www.typescriptlang.org/docs/handb
 ```js
 glsl({
   include: /\.(glsl|wgsl|vert|frag|vs|fs)$/, // RegExp of file extensions to import
-  removeDuplicatedImports: false,            // Automatically remove an already imported chunk
+  removeDuplicatedImports: false,            // Automatically remove duplicated chunks
+  importKeywords: ['#include'],              // Keywords used to import shader chunk files
   warnDuplicatedImports: true,               // Warn if the same chunk was imported multiple times
   defaultExtension: 'glsl',                  // Shader suffix to use when no extension is specified
-  importKeyword: '#include',                 // Keyword used to import shader chunks
+  onComplete: undefined,                     // Function to call with output shader
   minify: false,                             // Minify/optimize output shader code
   watch: true,                               // Recompile shader on change
   root: '/'                                  // Directory for root imports
